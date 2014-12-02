@@ -20,20 +20,30 @@
        <div class="container">
            <form class="form-amortizacion" id="formularioAmort" action="" method="POST">
             <h2 class="form-amortizacion-heading"><?php echo $messageTitle ?></h2>
-            <label for="inputCapital" class="sr-only">CAPITAL</label>
-            <input type="number" id="inputCapital" class="form-control" placeholder="CAPITAL Ejemplo: 20000" required autofocus min="0" step="100">
-            <label for="inputTipoAmortizacion" class="sr-only"></label>
+            <div class="inputs">
+                
+            <label for="inputCapital" class="labels">Capital</label>
+            <input type="number" id="inputCapital" class="form-control" placeholder="20000" required autofocus min="0" step="100">
+            
+            </div>
+            
+            <div class="inputs">
+            <label for="inputTipoAmortizacion" class="labels">Tipo de Amortizacion</label>
             <select id="inputTipoAmortizacion"  class="form-control" required>
                 <option value="" disabled selected>TIPO DE AMORTIZACION</option>
                 <?php foreach ($optionsAmortizacion as $key => $item): ?>
                     <option value="<?= $key ?>"><?= $item ?></option>
                 <?php endforeach; ?>
             </select>
+            </div>
             
-            <label for="inputPlazo" class="sr-only">Plazo</label>
-            <input type="number" id="inputPlazo" class="form-control" placeholder="PLAZO Ejemplo: 12" required autofocus min="0" step="1">
-            
-            <button class="btn btn-lg btn-primary btn-block" id="buttonSubmit" type="submit">Calcular Pagos</button>
+             <div class="inputs">
+            <label for="inputPlazo" class="labels">Plazo</label>
+            <input type="number" id="inputPlazo" class="form-control" placeholder="12" required autofocus min="0" step="1">
+             </div>
+            <hr>
+        
+            <button class="btn btn-primary btn-block" id="buttonSubmit" type="submit">Calcular Tabla e Intereses</button>
                
            </form>
            
