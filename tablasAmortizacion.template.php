@@ -2,7 +2,15 @@
 <div id="contentTables">
     
     <div id="divFrancesa">
-        <h4>Amortizacion Francesa <small> Cuotas Iguales</small></h4>
+        <h3>Amortizacion Francesa <small> Cuotas Iguales</small></h3>
+        <hr>
+        <table  class="table table-bordered">
+            <tr><td><strong>Cuota <?= $tipoAmortizacion ?></strong></td><td>$<?= number_format($datosFrancesa['cuota'], $dec, ',', '.')   ?></td></tr>
+            <tr><td><strong>Inter&eacute;s Acumulado</strong></td><td>$<?= number_format($datosFrancesa['interes'], $dec, ',', '.')   ?></td></tr>
+            <tr><td><strong>Tasa de Inter&eacute;s Nominal</strong></td><td><?= number_format($datosFrancesa['tasa'], $dec, ',', '.')   ?>%</td></tr>
+        </table>
+        
+        <hr>
         <table  class="table table-bordered">
             <th>Periodo</th><th>Cuota</th><th>Capital</th><th>Inter&eacute;s</th><th>Saldo Capital</th>
             <?php    foreach ($tablaFrancesa as $value): ?>
@@ -29,9 +37,18 @@
         </table>  
     </div>
     
-    
+    <hr>
+    <hr>
     <div id="divAlemana" class="divAmort">
-        <h4>Amortizacion Alemana <small>Iguales Aportes al Capital </small></h4>
+        <h3>Amortizacion Alemana <small>Iguales Aportes al Capital </small></h3>
+        <hr>
+        <table  class="table table-bordered">
+            <tr><td><strong>Cuota de Capital <?= $tipoAmortizacion ?></strong></td><td>$<?= number_format($datosAlemana['cuota'], $dec, ',', '.')   ?></td></tr>
+            <tr><td><strong>Inter&eacute;s Acumulado</strong></td><td>$<?= number_format($datosAlemana['interes'], $dec, ',', '.')   ?></td></tr>
+            <tr><td><strong>Tasa de Inter&eacute;s Nominal</strong></td><td><?= number_format($datosAlemana['tasa'], $dec, ',', '.')   ?>%</td></tr>
+        </table>
+        
+        <hr>
         <table class="table table-bordered">
           <th>Periodo</th><th>Cuota</th><th>Capital</th><th>Inter&eacute;s</th><th>Saldo Capital</th>
             <?php    foreach ($tablaAlemana as $value): ?>
