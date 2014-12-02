@@ -21,7 +21,7 @@
            <form class="form-amortizacion" id="formularioAmort" action="" method="POST">
             <h2 class="form-amortizacion-heading"><?php echo $messageTitle ?></h2>
             <label for="inputCapital" class="sr-only">CAPITAL</label>
-            <input type="number" id="inputCapital" class="form-control" placeholder="CAPITAL Ejemplo: 20000" required autofocus min="0" step="1">
+            <input type="number" id="inputCapital" class="form-control" placeholder="CAPITAL Ejemplo: 20000" required autofocus min="0" step="100">
             <label for="inputTipoAmortizacion" class="sr-only"></label>
             <select id="inputTipoAmortizacion"  class="form-control" required>
                 <option value="" disabled selected>TIPO DE AMORTIZACION</option>
@@ -31,14 +31,14 @@
             </select>
             
             <label for="inputPlazo" class="sr-only">Plazo</label>
-            <input type="number" id="inputPlazo" class="form-control" placeholder="PLAZO Ejemplo: 12" required autofocus>
+            <input type="number" id="inputPlazo" class="form-control" placeholder="PLAZO Ejemplo: 12" required autofocus min="0" step="1">
             
             <button class="btn btn-lg btn-primary btn-block" id="buttonSubmit" type="submit">Calcular Pagos</button>
                
            </form>
            
            
-           <div id="tablasAmortizacion">
+           <div id="tablasAmortizacion" class="tablasAmortizacion">
                
                
            </div>

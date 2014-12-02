@@ -4,7 +4,7 @@ body {
   background-color: #eee;
 }
 
-.form-amortizacion {
+.form-amortizacion , .tablasAmortizacion {
   max-width: 600px;
   padding: 15px;
   margin: 0 auto;
@@ -16,7 +16,7 @@ body {
 .form-amortizacion .checkbox {
   font-weight: normal;
 }
-.form-amortizacion .form-control {
+.form-amortizacion .form-control , divAmort{
   position: relative;
   height: auto;
   -webkit-box-sizing: border-box;
@@ -33,3 +33,5 @@ body {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
+
+

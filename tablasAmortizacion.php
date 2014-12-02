@@ -8,12 +8,17 @@ $interes=0.1123;
             
 $prestamo= new Prestamo();    
 $prestamo->setCapital($capital);
+$prestamo->setIterador(intval($tipo));
 $prestamo->setTasaInteres($interes);
+
 $prestamo->pagos(1, $plazo, $prestamo->calcCuotaFrancesa($plazo));
-$prestamo->calcTablaDePagos(true);
-$prestamo->getHtmlPrestamo();
-$prestamo->calcTablaDePagos();
-$prestamo->getHtmlPrestamo();
+
+imprimirTablas($prestamo->calcTablaDePagos(false), $prestamo->calcTablaDePagos(true));
+
+function imprimirTablas($tablaFrancesa, $tablaAlemana,$dec=2)
+{
+   require 'tablasAmortizacion.template.php';
+}
 
 
             

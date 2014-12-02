@@ -2,51 +2,20 @@
 
 class Prestamo
 {
-    /**
-     * Precision de los calculos a realizar.
-     * @var integer 
-     */
+   
     private $_precision = 12;
  
-    /**
-     * Cantidad de iteraciones para los calculos de funciones externas.
-     * @var integer 
-     */
+   
     private $_iterador  = 12;
  
-    /**
-     * Tasa de Interes real del Prestamo, expresada en el lapso de tiempo
-     * de los pagos. Si se tiene una tasa anual y se requiere mensual usar el 
-     * metodo convertirTasa.
-     * @var double
-     */
     private $_tasaInteres;
  
-    /**
-     * Monto total del prestamo solicitado al Momento 0.
-     * @var double 
-     */
     private $_capital;
  
-    /**
-     * Arreglo Conteniendo los pagos en cada periodo. El indice es el periodo y
-     * el monto el valor del arreglo.
-     * @example array(1 => 10000, 2=> 3750); Significa que el pago del 1er Mes es
-     * 10.000 y el segundo 3.750.-
-     * @var array 
-     */
     private $_pagos = array();
  
-    /**
-     * Contiene la tabla de pagos del peridodo.
-     * @var array
-     */
     private $_tablaPagos = array();
  
-    /**
-     * Constructor de Clase.
-     * @param   integer $precision  Establece con cuantos numeros se mostrara el resultado.
-     */
     public function __construct($precision = 12)
     {
         if (is_int($precision) && $precision > 0) {
@@ -56,14 +25,6 @@ class Prestamo
         bcscale($this->_precision);
     }
  
-    /**
-     * Cofigura la tasa de interes que tendra el Prestamo.
-     * @param   double  $tasa       Valor de la tasa de interes.
-     * @param   integer $periodos   En cuantos periodos del prestamo esta expresada.
-     * @example Si la tasa nos la dan anual para un prestamo de pago mensual entonces
-     *          periodos va a ser igual a 12.-
-     * @throws  Si el valor de la tasa de interes no es valido lanza un error.
-     */
     public function setTasaInteres($tasa, $periodos = 1)
     {
         if (!is_numeric($tasa)) {
@@ -78,24 +39,16 @@ class Prestamo
         }
     }
  
-    /**
-     * Establece las iteraciones para el calculo de potencias complejas.
-     * @param   integer $iterador   Numero de iteraciones a realizar.
-     */
+   
     public function setIterador($iterador)
     {   
-        if (is_int($iterador) && $iterador >= 10) {
+        if (is_int($iterador) ){
             $this->_iterador = $iterador;
         }
     }
  
-    /**
-     * Convierte la tasa de interes de un periodo a otro.
-     * @param   double  $tasa
-     * @param   integer $de     periodo actual de la tasa de interes (generalmente 1).
-     * @param   integer $a      Al periodo que se quiere convertir (Ej.: Anual = 12, si de  1).
-     * @return  double          Retorna la tasa de interes convertida al Periodo establecido.
-     */
+
+  
     public function convertirTasa($tasa, $de, $a)
     {
         $retorno        = 0;
@@ -108,19 +61,13 @@ class Prestamo
         return $retorno;
     }
  
-    /**
-     * Retorna la Tasa de interes Calculada.
-     * @return duble
-     */
+ 
     public function getTasaInteres()
     {
         return $this->_tasaInteres;
     }
  
-    /**
-     * Calcula la tasa Interna de Retorno de un prestamo o inversion.
-     * @return double
-     */
+   
     public function calcularTasaInteres()
     {   
         if (is_numeric($this->_capital) && $this->_capital > 0 && array_sum($this->_pagos) >= $this->_capital ) {
@@ -133,15 +80,7 @@ class Prestamo
         return $this->_tasaInteres;
     }
  
-    /**
-     * Calcula la tir de una inversion.
-     * Se calcula en base al teorema de bolzano.
-     * @param   double  $a          Extremo inferior supuesto de la Tasa de Interes.
-     * @param   double  $b          Extremo superior supuesto de la tasa de interes.
-     * @param   double  $tirc       Tir que esta siendo calculada.
-     * @param   double  $precision  Precision que se quiere del resultado.
-     * @return  double
-     */
+   
     private function _tir($a, $b, $tirc)
     {    
         $tir    = bcdiv(bcadd($a, $b), 2);
@@ -163,12 +102,7 @@ class Prestamo
         }
     }
  
-    /**
-     * Establece el dinero pedido en prestamo o el valor de la secuencia de
-     * pagos al momento 0.
-     * @param   double  $monto  Capital, dinero pedido.
-     * @throws  Error si no se ingresa un monto valido de capital.
-     */
+   
     public function setCapital($monto)
     {
         if (is_numeric($monto)) {
@@ -178,11 +112,7 @@ class Prestamo
         }
     }
  
-    /**
-     * Calcula la cuota de un prestamo para una cuota constante.
-     * @param   integer $periodos   Cantidad de Periodos de los pagos consecutivos.
-     * @return  double              Cuota a pagar en cada periodo.
-     */
+    
     public function calcCuotaFrancesa($periodos)
     {
         $i          = $this->_tasaInteres;
@@ -190,24 +120,18 @@ class Prestamo
         if (bccomp(0, $this->_tasaInteres) == 0) {
             $cuota  = bcdiv($this->_capital, $n);
         } else {
-            $base=  bcadd('1', bcdiv($i,'12'));
+            $base=  bcadd('1', bcdiv($i,$this->_iterador));
             $power= $periodos;
             $innerResult=  bcpow($base, $power);
             $innerDivider=  bcsub('1', bcdiv('1', $innerResult));
             $numerador  = $this->_capital;
-            $divisor    = bcdiv($innerDivider, bcdiv($i, '12'));
+            $divisor    = bcdiv($innerDivider, bcdiv($i, $this->_iterador));
             $cuota      = bcdiv($numerador, $divisor);           
         }
         return $cuota;
     }
  
-    /**
-     * Configura los pagos.
-     * @param   integer     $desde  Cuota desde donde comienza el pago.
-     * @param   integer     $hasta  Cuota hasta donde se paga.
-     * @param   double      $cuota  Valor de la cuota.
-     * @throws \Exception   Si no se ingresa un monto de cuota valido.
-     */
+    
     public function pagos($desde, $hasta, $cuota)
     {
         $desde = (int) $desde;
@@ -222,12 +146,7 @@ class Prestamo
         }
     }
  
-    /**
-     * Genera una tabla de Pagos de un prestamo.
-     * @param   boolean $amortConst Establece si la amortizacion es constante o variable.
-     * @return  array
-     * @throws \Exception   Si el periodo de pago es menor o igual a 0.
-     */
+   
     public function calcTablaDePagos($amortConst = false)
     {
         $i      = $this->_tasaInteres;
@@ -248,10 +167,14 @@ class Prestamo
         $tabla      = array();
         $tabla[0]['Monto']  = $this->_capital;
         $tabla[0]['Saldo']  = $this->_capital;
+        $tabla[0]['Periodo']  = 0;
+        $tabla[0]['Amortizacion']  = "";
+        $tabla[0]['Interes']  = "";
+        $tabla[0]['Cuota']  = "";
         for ($p = 1; $p <= $n; $p++) {
             $tabla[$p]['Periodo']   = $p;
             $tabla[$p]['Monto']     = $tabla[($p-1)]['Saldo'];
-            $interes        = bcmul($tabla[$p]['Monto'], bcdiv($this->_tasaInteres,'12'));
+            $interes        = bcmul($tabla[$p]['Monto'], bcdiv($this->_tasaInteres,$this->_iterador));
             if ($amortConst) {
                 $tabla[$p]['Amortizacion']  = $c;
             } else {
@@ -261,7 +184,7 @@ class Prestamo
             $tabla[$p]['Cuota']     = bcadd($tabla[$p]['Amortizacion'], $tabla[$p]['Interes']);
             $tabla[$p]['Saldo']     = bcsub($tabla[$p]['Monto'], $tabla[$p]['Amortizacion']);
         }
-        array_shift($tabla);
+   
         $this->_tablaPagos = $tabla;
         return $tabla;
     }
@@ -269,11 +192,6 @@ class Prestamo
     
     
  
-    /**
-     * Genera una tabla de prestamo.
-     * Metodo usado para ver la tasa de prestamo de ejemplo.
-     * No se debe incluir.
-     */
     public function getHtmlPrestamo($dec = 2)
     {
         if (count($this->_tablaPagos) < 1) {

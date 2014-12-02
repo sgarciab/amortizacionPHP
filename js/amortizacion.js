@@ -5,7 +5,7 @@ $(document).ready(function () {
         
         $('#tablasAmortizacion').load('tablasAmortizacion.php',{
            capital:$('#inputCapital').val(),
-           tipo:$('#inputCapital').val(),
+           tipo:$('#inputTipoAmortizacion').val(),
            plazo:$('#inputPlazo').val(),
            async:false
         },function(){
