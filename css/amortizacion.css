@@ -24,7 +24,7 @@ body {
      -moz-box-sizing: border-box;
           box-sizing: border-box;
   padding: 2px;
-  font-size: 16px;
+  font-size: 14px;
   width: 40%;
 }
 .form-amortizacion .form-control:focus {
@@ -45,7 +45,7 @@ body {
      -moz-box-sizing: border-box;
           box-sizing: border-box;
   padding: 10px;
-  font-size: 16px;
+//  font-size: 16px;
 }
 
 .inputs{
@@ -53,7 +53,7 @@ body {
 }
 
 .par{
-      background-color: #eee;
+      background-color: #fff;
 }
 
 .impar{
@@ -90,4 +90,13 @@ body {
     background-color: #D8D8D8;
      text-align: right;
 }
+.summaryValue input{
+    text-align: right;
+}
 
+.ui-widget{
+    font-size: 14px;
+}
+th{
+    font-weight:normal;
+}

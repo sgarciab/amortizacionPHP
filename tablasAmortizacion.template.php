@@ -2,19 +2,19 @@
 <div id="contentTables">
     
     <ul>
-        <li><a href="#divPagosPeriodicos">Pagos Peri&oacute;cos</a></li>
+        <li><a href="#divPagosPeriodicos">Pagos Peri&oacute;dicos</a></li>
     <li><a href="#divPagosVencimiento">Pagos por Vencimiento</a></li>
     
     </ul>
     <div  id="divPagosPeriodicos"  class="divAmort">
-    <h2>Pagos Peri&oacute;dicos <small> Tablas de Amortizaci&oacute;n</small></h2>
+    <h4>Pagos Peri&oacute;dicos <small> Tablas de Amortizaci&oacute;n</small></h4>
     <div id="divFrancesa" class="divAmort">
-        <h3>Amortizacion Francesa <small> Cuotas Iguales</small></h3>
+        <h5>Amortizacion Francesa <small> Cuotas Iguales</small></h5>
         <hr>
         <table  class="table table-bordered">
-            <tr><td class="summaryLabel"><strong>Cuota <?= $tipoAmortizacion ?></strong></td>   <td class="summaryValue">$<?= number_format($datosFrancesa['cuota'], $dec, ',', '.')   ?></td></tr>
-            <tr><td class="summaryLabel"><strong>Inter&eacute;s Acumulado</strong></td>         <td class="summaryValue">$<?= number_format($datosFrancesa['interes'], $dec, ',', '.')   ?></td></tr>
-            <tr><td class="summaryLabel"><strong>Tasa de Inter&eacute;s Nominal</strong></td>   <td class="summaryValue"><?= number_format($datosFrancesa['tasa'], $dec, ',', '.')   ?>%</td></tr>
+            <tr><td class="summaryLabel">Cuota <?= $tipoAmortizacion ?></td>   <td class="summaryValue">$<?= number_format($datosFrancesa['cuota'], $dec, ',', '.')   ?></td></tr>
+            <tr><td class="summaryLabel">Inter&eacute;s Acumulado</td>         <td class="summaryValue">$<?= number_format($datosFrancesa['interes'], $dec, ',', '.')   ?></td></tr>
+            <tr><td class="summaryLabel">Tasa de Inter&eacute;s Nominal</td>   <td class="summaryValue"><?= number_format($datosFrancesa['tasa'], $dec, ',', '.')   ?>%</td></tr>
         </table>
         
         <hr>
@@ -54,12 +54,12 @@
     <hr>
     <hr>
     <div id="divAlemana" class="divAmort">
-        <h3>Amortizacion Alemana <small>Iguales Aportes al Capital </small></h3>
+        <h5>Amortizacion Alemana <small>Iguales Aportes al Capital </small></h5>
         <hr>
         <table  class="table table-bordered">
-            <tr><td class="summaryLabel"><strong>Cuota de Capital <?= $tipoAmortizacion ?></strong></td>    <td class="summaryValue">$<?= number_format($datosAlemana['cuota'], $dec, ',', '.')   ?></td></tr>
-            <tr><td class="summaryLabel"><strong>Inter&eacute;s Acumulado</strong></td>                     <td class="summaryValue">$<?= number_format($datosAlemana['interes'], $dec, ',', '.')   ?></td></tr>
-            <tr><td class="summaryLabel"><strong>Tasa de Inter&eacute;s Nominal</strong></td>               <td class="summaryValue"><?= number_format($datosAlemana['tasa'], $dec, ',', '.')   ?>%</td></tr>
+            <tr><td class="summaryLabel">Cuota de Capital <?= $tipoAmortizacion ?></td>    <td class="summaryValue">$<?= number_format($datosAlemana['cuota'], $dec, ',', '.')   ?></td></tr>
+            <tr><td class="summaryLabel">Inter&eacute;s Acumulado</td>                     <td class="summaryValue">$<?= number_format($datosAlemana['interes'], $dec, ',', '.')   ?></td></tr>
+            <tr><td class="summaryLabel">Tasa de Inter&eacute;s Nominal</td>               <td class="summaryValue"><?= number_format($datosAlemana['tasa'], $dec, ',', '.')   ?>%</td></tr>
         </table>
         
         <hr>
@@ -96,17 +96,19 @@
     <hr>
     </div>
     
-    <div  id="divPagosVencimiento"  class="divAmort">
-    <h2>Pago al Vencimiento </h2>
+    <div  id="divPagosVencimiento"  class="">
+    <h4>Pago al Vencimiento </h4>
         <table  class="table table-bordered">
-            <tr><td class="summaryLabel"><strong> Capital <?= $tipoAmortizacion ?></strong></td>    <td class="summaryValue">$<?= number_format($datosVencimiento['capital'], $dec, ',', '.')   ?></td></tr>
-            <tr><td class="summaryLabel"><strong>Plazo en D&iacute;as</strong></td>                 <td class="summaryValue"><?= number_format($datosVencimiento['plazo'], 0, ',', '.')   ?></td></tr>
+            <tr><td class="summaryLabel"> Capital</td>    <td class="summaryValue">$<?= number_format($datosVencimiento['capital'], $dec, ',', '.')   ?></td></tr>
+            <tr><td class="summaryLabel">Ingrese el Plazo en D&iacute;as</td>      <td class="summaryValue"><input name="inputPlazoVencimiento" type="number" min="1" max="365" value="<?= number_format($datosVencimiento['plazo'], 0, ',', '.')   ?>" id="inputPlazoVencimiento"/></td></tr>
         </table>
-        
+    <input type="hidden" id="valTasa" value="<?=$datosVencimiento['tasa']?>" >
+    <input type="hidden" id="valCapital" value="<?=$datosVencimiento['capital']?>" >
+    
         <table  class="table table-bordered">
-            <tr><td class="summaryLabel"><strong>Tasa de Inter&eacute;s Nominal </strong></td>    <td class="summaryValue"><?= number_format(bcmul($datosVencimiento['tasa'],'100'), $dec, ',', '.')   ?>%</td></tr>
-            <tr><td class="summaryLabel"><strong>Inter&eacute;s al Vencimiento</strong></td>      <td class="summaryValue">$<?= number_format($datosVencimiento['interes'], $dec, ',', '.')   ?></td></tr>
-            <tr><td class="summaryLabel"><strong>Pago Total al Vencimiento</strong></td>          <td class="summaryValue">$<?= number_format($datosVencimiento['pago'], $dec, ',', '.')   ?></td></tr>
+            <tr><td class="summaryLabel">Tasa de Inter&eacute;s Nominal </td>    <td class="summaryValue"><?= number_format(bcmul($datosVencimiento['tasa'],'100'), $dec, ',', '.')   ?>%</td></tr>
+            <tr><td class="summaryLabel">Inter&eacute;s al Vencimiento</td>      <td class="summaryValue">$<input type="text"  id="inputInteres" value="<?= number_format($datosVencimiento['interes'], $dec, ',', '.')   ?>" disabled></td></tr>
+            <tr><td class="summaryLabel">Pago Total al Vencimiento</td>          <td class="summaryValue">$<input type="text"  id="inputPago" value="<?= number_format($datosVencimiento['pago'], $dec, ',', '.')   ?>" disabled></td></tr>
         </table>
         
     </div>
