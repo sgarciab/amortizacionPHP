@@ -53,11 +53,12 @@ body {
 }
 
 .par{
-    background-color: #31708f;
+      background-color: #eee;
 }
 
 .impar{
-    background-color: #eee;
+ 
+     background-color: #DBE5F1;
 }
 
 
@@ -70,3 +71,23 @@ body {
     width: 41%;
     margin-left:16% 
 }
+
+.table th , .summaryLabel {
+    background-color: #4F81BD;
+    color: white;
+    text-align: center;
+}
+
+.periodo{
+    text-align: center;
+}
+
+.numbers{
+    text-align: right;
+}
+
+.summaryValue {
+    background-color: #D8D8D8;
+     text-align: right;
+}
+

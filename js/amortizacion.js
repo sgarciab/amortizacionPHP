@@ -9,8 +9,17 @@ $(document).ready(function () {
            plazo:$('#inputPlazo').val(),
            async:false
         },function(){
-            
+            $('#contentTables').tabs();
         });
+    });
+    
+    
+    $('#inputTipoAmortizacion').change(function(){
+        $('#inputPlazo').val('');
+
+        $('#inputPlazo').attr('max',$('#inputTipoAmortizacion').val()*4);
+        
+        
     });
  
 });

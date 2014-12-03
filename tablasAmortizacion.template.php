@@ -1,13 +1,20 @@
 
 <div id="contentTables">
     
+    <ul>
+        <li><a href="#divPagosPeriodicos">Pagos Peri&oacute;cos</a></li>
+    <li><a href="#divPagosVencimiento">Pagos por Vencimiento</a></li>
+    
+    </ul>
+    <div  id="divPagosPeriodicos"  class="divAmort">
+    <h2>Pagos Peri&oacute;dicos <small> Tablas de Amortizaci&oacute;n</small></h2>
     <div id="divFrancesa" class="divAmort">
         <h3>Amortizacion Francesa <small> Cuotas Iguales</small></h3>
         <hr>
         <table  class="table table-bordered">
-            <tr><td><strong>Cuota <?= $tipoAmortizacion ?></strong></td><td>$<?= number_format($datosFrancesa['cuota'], $dec, ',', '.')   ?></td></tr>
-            <tr><td><strong>Inter&eacute;s Acumulado</strong></td><td>$<?= number_format($datosFrancesa['interes'], $dec, ',', '.')   ?></td></tr>
-            <tr><td><strong>Tasa de Inter&eacute;s Nominal</strong></td><td><?= number_format($datosFrancesa['tasa'], $dec, ',', '.')   ?>%</td></tr>
+            <tr><td class="summaryLabel"><strong>Cuota <?= $tipoAmortizacion ?></strong></td>   <td class="summaryValue">$<?= number_format($datosFrancesa['cuota'], $dec, ',', '.')   ?></td></tr>
+            <tr><td class="summaryLabel"><strong>Inter&eacute;s Acumulado</strong></td>         <td class="summaryValue">$<?= number_format($datosFrancesa['interes'], $dec, ',', '.')   ?></td></tr>
+            <tr><td class="summaryLabel"><strong>Tasa de Inter&eacute;s Nominal</strong></td>   <td class="summaryValue"><?= number_format($datosFrancesa['tasa'], $dec, ',', '.')   ?>%</td></tr>
         </table>
         
         <hr>
@@ -25,18 +32,18 @@
                 <?php   if($value['Periodo']>0): ?>
                     
                     <tr class="<?= $cl?>"> <?= PHP_EOL; ?>
-                    <td> <?= number_format($value['Periodo'], 0, ',', '.')          ?> </td> <?=PHP_EOL; ?>
-                    <td> $<?= number_format($value['Cuota'], $dec, ',', '.')         ?> </td> <?=PHP_EOL; ?>
-                    <td> $<?= number_format($value['Amortizacion'], $dec, ',', '.')  ?> </td> <?=PHP_EOL; ?>
-                    <td> $<?= number_format($value['Interes'], $dec, ',', '.')       ?> </td> <?=PHP_EOL; ?>
-                    <td> $<?= number_format($value['Saldo'] , $dec, ',', '.')        ?> </td> <?=PHP_EOL; ?>
+                    <td class="periodo"> <?= number_format($value['Periodo'], 0, ',', '.')          ?> </td> <?=PHP_EOL; ?>
+                    <td class="numbers"> $<?= number_format($value['Cuota'], $dec, ',', '.')         ?> </td> <?=PHP_EOL; ?>
+                    <td class="numbers"> $<?= number_format($value['Amortizacion'], $dec, ',', '.')  ?> </td> <?=PHP_EOL; ?>
+                    <td class="numbers"> $<?= number_format($value['Interes'], $dec, ',', '.')       ?> </td> <?=PHP_EOL; ?>
+                    <td class="numbers"> $<?= number_format($value['Saldo'] , $dec, ',', '.')        ?> </td> <?=PHP_EOL; ?>
                 <?php  else: ?>     
-                    <tr class="headerRow"> <?= PHP_EOL; ?>
-                    <td> 0 </td> <?=PHP_EOL; ?>
-                    <td> </td> <?=PHP_EOL; ?>
-                    <td> </td> <?=PHP_EOL; ?>
-                    <td> </td> <?=PHP_EOL; ?>
-                    <td> $<?= number_format($value['Saldo'] , $dec, ',', '.')        ?> </td> <?=PHP_EOL; ?>
+                    <tr class="<?= $cl?>"> <?= PHP_EOL; ?>
+                    <td class="periodo"> 0 </td> <?=PHP_EOL; ?>
+                    <td class="numbers"> </td> <?=PHP_EOL; ?>
+                    <td class="numbers"> </td> <?=PHP_EOL; ?>
+                    <td class="numbers"> </td> <?=PHP_EOL; ?>
+                    <td class="numbers"> $<?= number_format($value['Saldo'] , $dec, ',', '.')        ?> </td> <?=PHP_EOL; ?>
                     
                 <?php  endif; ?>       
            <?php    endforeach; ?>
@@ -50,9 +57,9 @@
         <h3>Amortizacion Alemana <small>Iguales Aportes al Capital </small></h3>
         <hr>
         <table  class="table table-bordered">
-            <tr><td><strong>Cuota de Capital <?= $tipoAmortizacion ?></strong></td><td>$<?= number_format($datosAlemana['cuota'], $dec, ',', '.')   ?></td></tr>
-            <tr><td><strong>Inter&eacute;s Acumulado</strong></td><td>$<?= number_format($datosAlemana['interes'], $dec, ',', '.')   ?></td></tr>
-            <tr><td><strong>Tasa de Inter&eacute;s Nominal</strong></td><td><?= number_format($datosAlemana['tasa'], $dec, ',', '.')   ?>%</td></tr>
+            <tr><td class="summaryLabel"><strong>Cuota de Capital <?= $tipoAmortizacion ?></strong></td>    <td class="summaryValue">$<?= number_format($datosAlemana['cuota'], $dec, ',', '.')   ?></td></tr>
+            <tr><td class="summaryLabel"><strong>Inter&eacute;s Acumulado</strong></td>                     <td class="summaryValue">$<?= number_format($datosAlemana['interes'], $dec, ',', '.')   ?></td></tr>
+            <tr><td class="summaryLabel"><strong>Tasa de Inter&eacute;s Nominal</strong></td>               <td class="summaryValue"><?= number_format($datosAlemana['tasa'], $dec, ',', '.')   ?>%</td></tr>
         </table>
         
         <hr>
@@ -68,23 +75,40 @@
                 <?php   if($value['Periodo']>0): ?>
                     
                     <tr class="<?= $cl?>"> <?= PHP_EOL; ?>
-                    <td> <?= number_format($value['Periodo'], 0, ',', '.')          ?> </td> <?=PHP_EOL; ?>
-                    <td> $<?= number_format($value['Cuota'], $dec, ',', '.')         ?> </td> <?=PHP_EOL; ?>
-                    <td> $<?= number_format($value['Amortizacion'], $dec, ',', '.')  ?> </td> <?=PHP_EOL; ?>
-                    <td> $<?= number_format($value['Interes'], $dec, ',', '.')       ?> </td> <?=PHP_EOL; ?>
-                    <td> $<?= number_format($value['Saldo'] , $dec, ',', '.')        ?> </td> <?=PHP_EOL; ?>
+                    <td class="periodo"> <?= number_format($value['Periodo'], 0, ',', '.')          ?> </td> <?=PHP_EOL; ?>
+                    <td class="numbers"> $<?= number_format($value['Cuota'], $dec, ',', '.')         ?> </td> <?=PHP_EOL; ?>
+                    <td class="numbers"> $<?= number_format($value['Amortizacion'], $dec, ',', '.')  ?> </td> <?=PHP_EOL; ?>
+                    <td class="numbers"> $<?= number_format($value['Interes'], $dec, ',', '.')       ?> </td> <?=PHP_EOL; ?>
+                    <td class="numbers"> $<?= number_format($value['Saldo'] , $dec, ',', '.')        ?> </td> <?=PHP_EOL; ?>
                 <?php  else: ?>     
                     <tr> <?= PHP_EOL; ?>
-                    <td> 0 </td> <?=PHP_EOL; ?>
-                    <td> </td> <?=PHP_EOL; ?>
-                    <td> </td> <?=PHP_EOL; ?>
-                    <td> </td> <?=PHP_EOL; ?>
-                    <td> $<?= number_format($value['Saldo'] , $dec, ',', '.')        ?> </td> <?=PHP_EOL; ?>
+                    <td class="periodo"> 0 </td> <?=PHP_EOL; ?>
+                    <td class="numbers"> </td> <?=PHP_EOL; ?>
+                    <td class="numbers"> </td> <?=PHP_EOL; ?>
+                    <td class="numbers"> </td> <?=PHP_EOL; ?>
+                    <td class="numbers"> $<?= number_format($value['Saldo'] , $dec, ',', '.')        ?> </td> <?=PHP_EOL; ?>
                     
                 <?php  endif; ?> 
            <?php    endforeach; ?>
 
         </table>  
+    </div>
+    <hr>
+    </div>
+    
+    <div  id="divPagosVencimiento"  class="divAmort">
+    <h2>Pago al Vencimiento </h2>
+        <table  class="table table-bordered">
+            <tr><td class="summaryLabel"><strong> Capital <?= $tipoAmortizacion ?></strong></td>    <td class="summaryValue">$<?= number_format($datosVencimiento['capital'], $dec, ',', '.')   ?></td></tr>
+            <tr><td class="summaryLabel"><strong>Plazo en D&iacute;as</strong></td>                 <td class="summaryValue"><?= number_format($datosVencimiento['plazo'], 0, ',', '.')   ?></td></tr>
+        </table>
+        
+        <table  class="table table-bordered">
+            <tr><td class="summaryLabel"><strong>Tasa de Inter&eacute;s Nominal </strong></td>    <td class="summaryValue"><?= number_format(bcmul($datosVencimiento['tasa'],'100'), $dec, ',', '.')   ?>%</td></tr>
+            <tr><td class="summaryLabel"><strong>Inter&eacute;s al Vencimiento</strong></td>      <td class="summaryValue">$<?= number_format($datosVencimiento['interes'], $dec, ',', '.')   ?></td></tr>
+            <tr><td class="summaryLabel"><strong>Pago Total al Vencimiento</strong></td>          <td class="summaryValue">$<?= number_format($datosVencimiento['pago'], $dec, ',', '.')   ?></td></tr>
+        </table>
+        
     </div>
 
 

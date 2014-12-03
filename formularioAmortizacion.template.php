@@ -10,10 +10,12 @@
     <meta name="author" content="">
     <link rel="icon" href="images/favicon.ico">
 
+    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     <link href="boostrap/css/bootstrap.min.css" rel="stylesheet">
-
     <link href="css/amortizacion.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
     <script src="js/amortizacion.js"></script>
    </head>
    <body>
@@ -23,7 +25,7 @@
             <div class="inputs">
                 
             <label for="inputCapital" class="labels">Capital</label>
-            <input type="number" id="inputCapital" class="form-control" placeholder="20000" required autofocus min="0" step="100">
+            <input type="number" id="inputCapital" class="form-control" placeholder="20000" required autofocus min="1000" step="100">
             
             </div>
             
@@ -39,7 +41,7 @@
             
              <div class="inputs">
             <label for="inputPlazo" class="labels">Plazo</label>
-            <input type="number" id="inputPlazo" class="form-control" placeholder="12" required autofocus min="0" step="1">
+            <input type="number" id="inputPlazo" class="form-control" placeholder="12" required autofocus min="1" step="1" max="48">
              </div>
             <hr>
         

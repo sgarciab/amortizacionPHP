@@ -1,10 +1,12 @@
 <?php
-require 'Prestamo.php';
+require 'clases/Prestamo.php';
 
 $capital = $_POST['capital'];
 $tipo =$_POST['tipo'];
 $plazo = $_POST['plazo'];
 $interes=0.1123;
+
+
 
 $optionsAmortizacion=array('12'=>'Mensual','4'=>'Trimestal','2'=>'Semestral');
 
@@ -41,11 +43,20 @@ foreach ($amortAlemana as $value)
      $datosAlemana['cuota']=$value['Amortizacion'];
 }
 
+
+$datosVencimiento=array();
+$datosVencimiento['capital']=$capital;
+$datosVencimiento['plazo']=bcmul( $plazo, bcmul( '30', bcdiv($tipo,'12')));
+$datosVencimiento['tasa']= $interes;
+$datosVencimiento['interes']=  bcmul($datosVencimiento['capital'], bcmul(  $datosVencimiento['plazo'],  bcdiv($datosVencimiento['tasa'] ,'365')));
+$datosVencimiento['pago']=  bcadd($datosVencimiento['capital'],$datosVencimiento['interes']);
+
+
     
-imprimirTablas($amortFrancesa, $amortAlemana,$datosFrancesa,$datosAlemana,$tipoAmortizacion);
+imprimirTablas($amortFrancesa, $amortAlemana,$datosFrancesa,$datosAlemana,$tipoAmortizacion,$datosVencimiento);
 
 
-function imprimirTablas($tablaFrancesa, $tablaAlemana,$datosFrancesa,$datosAlemana,$tipoAmortizacion,$dec=2)
+function imprimirTablas($tablaFrancesa, $tablaAlemana,$datosFrancesa,$datosAlemana,$tipoAmortizacion,$datosVencimiento,$dec=2)
 {
    require 'tablasAmortizacion.template.php';
 }
