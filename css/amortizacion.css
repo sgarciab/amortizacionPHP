@@ -67,8 +67,8 @@ body {
     
 }
 
-#buttonSubmit{
-    width: 41%;
+#buttonSubmit, #buttonSubmitVenci{
+    width: 46%;
     margin-left:16% 
 }
 
@@ -99,4 +99,13 @@ body {
 }
 th{
     font-weight:normal;
+}
+
+.ui-widget-header{
+    background: none;
+    background-color: #286090;
+}
+.container{
+    max-width: 700px;
+    
 }

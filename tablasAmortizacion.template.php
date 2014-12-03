@@ -1,13 +1,9 @@
 
 <div id="contentTables">
     
-    <ul>
-        <li><a href="#divPagosPeriodicos">Pagos Peri&oacute;dicos</a></li>
-    <li><a href="#divPagosVencimiento">Pagos por Vencimiento</a></li>
+   
     
-    </ul>
-    <div  id="divPagosPeriodicos"  class="divAmort">
-    <h4>Pagos Peri&oacute;dicos <small> Tablas de Amortizaci&oacute;n</small></h4>
+
     <div id="divFrancesa" class="divAmort">
         <h5>Amortizacion Francesa <small> Cuotas Iguales</small></h5>
         <hr>
@@ -94,24 +90,9 @@
         </table>  
     </div>
     <hr>
-    </div>
+   
     
-    <div  id="divPagosVencimiento"  class="">
-    <h4>Pago al Vencimiento </h4>
-        <table  class="table table-bordered">
-            <tr><td class="summaryLabel"> Capital</td>    <td class="summaryValue">$<?= number_format($datosVencimiento['capital'], $dec, ',', '.')   ?></td></tr>
-            <tr><td class="summaryLabel">Ingrese el Plazo en D&iacute;as</td>      <td class="summaryValue"><input name="inputPlazoVencimiento" type="number" min="1" max="365" value="<?= number_format($datosVencimiento['plazo'], 0, ',', '.')   ?>" id="inputPlazoVencimiento"/></td></tr>
-        </table>
-    <input type="hidden" id="valTasa" value="<?=$datosVencimiento['tasa']?>" >
-    <input type="hidden" id="valCapital" value="<?=$datosVencimiento['capital']?>" >
-    
-        <table  class="table table-bordered">
-            <tr><td class="summaryLabel">Tasa de Inter&eacute;s Nominal </td>    <td class="summaryValue"><?= number_format(bcmul($datosVencimiento['tasa'],'100'), $dec, ',', '.')   ?>%</td></tr>
-            <tr><td class="summaryLabel">Inter&eacute;s al Vencimiento</td>      <td class="summaryValue">$<input type="text"  id="inputInteres" value="<?= number_format($datosVencimiento['interes'], $dec, ',', '.')   ?>" disabled></td></tr>
-            <tr><td class="summaryLabel">Pago Total al Vencimiento</td>          <td class="summaryValue">$<input type="text"  id="inputPago" value="<?= number_format($datosVencimiento['pago'], $dec, ',', '.')   ?>" disabled></td></tr>
-        </table>
-        
-    </div>
+   
 
 
 </div>

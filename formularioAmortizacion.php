@@ -1,6 +1,6 @@
 <?php
 $title="Calculo de Pagos";
-$messageTitle="Complete los siguientes campos";
+$messageTitle="";
 
 $optionsAmortizacion=array('12'=>'Mensual','4'=>'Trimestal','2'=>'Semestral');
 

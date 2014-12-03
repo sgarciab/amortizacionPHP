@@ -19,9 +19,15 @@
     <script src="js/amortizacion.js"></script>
    </head>
    <body>
-       <div class="container">
+       <div class="container" id="container">
+            <ul>
+                <li><a href="#divPagosPeriodicos">Pagos Peri&oacute;dicos</a></li>
+                <li><a href="#divPagosVencimiento">Pagos por Vencimiento</a></li>
+            </ul>
+           <div  id="divPagosPeriodicos"  class="divAmort">
+           <h3 class="form-amortizacion-heading"><?php echo $messageTitle ?></h3>
+           
            <form class="form-amortizacion" id="formularioAmort" action="" method="POST">
-            <h2 class="form-amortizacion-heading"><?php echo $messageTitle ?></h2>
             <div class="inputs">
                 
             <label for="inputCapital" class="labels">Capital</label>
@@ -54,10 +60,44 @@
                
                
            </div>
+           
+           </div>
+           
+            <div id="divPagosVencimiento" class="divAmort">
+               
+
+                    <h3 class="form-amortizacion-heading"><?php echo $messageTitle ?></h3>
+                    <form class="form-amortizacion" id="formularioVenci" action="" method="POST">
+                     <div class="inputs">
+
+                     <label for="inputCapitalVenci" class="labels">Capital</label>
+                     <input type="number" id="inputCapitalVenci" class="form-control" placeholder="20000" required autofocus min="1000" step="100">
+
+                     </div>
+
+
+                      <div class="inputs">
+                          <label for="inputPlazoVenci" class="labels">Plazo en d&iacute;as</label>
+                        <input type="number" id="inputPlazoVenci" class="form-control" placeholder="12" required autofocus min="1" step="1" max="365">
+                      </div>
+                     <hr>
+
+                     <button class="btn btn-primary btn-block" id="buttonSubmitVenci" type="submit">Calcular Total a Pagar e Interes</button>
+
+                    </form>
+
+
+                    <div id="tablasVenci" class="tablasAmortizacion">
+
+
+                    </div>
+
+                
+                
+ 
+            </div>
+           
        </div>
        
-       
-
-
    </body>
  </html>

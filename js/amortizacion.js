@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    $('#container').tabs();
+    
     
     $('#formularioAmort').on('submit',function(e){
         e.preventDefault();
@@ -9,7 +11,7 @@ $(document).ready(function () {
            plazo:$('#inputPlazo').val(),
            async:false
         },function(){
-            $('#contentTables').tabs();
+            
             $('#inputPlazoVencimiento').keyup(function(){
                 var plazo=$('#inputPlazoVencimiento').val();
                 var capital=parseFloat($('#valCapital').val());
@@ -21,6 +23,19 @@ $(document).ready(function () {
                 $('#inputPago').val(pago.toFixed(2));
 
             });
+        });
+    });
+    
+    
+    $('#formularioVenci').on('submit',function(e){
+        e.preventDefault();
+        
+        $('#tablasVenci').load('tablasVencimiento.php',{
+           capital:$('#inputCapitalVenci').val(),
+           plazo:$('#inputPlazoVenci').val(),
+           async:false
+        },function(){
+        
         });
     });
     
